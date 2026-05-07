@@ -3,42 +3,41 @@ package com.tw.bootcamp.p2;
 import java.util.Objects;
 
 public class Chance {
-    private final double chance;
+    private final double probability;
 
-    public Chance(double chance) {
-        this.chance = chance;
+    private Chance(double probability) {
+        this.probability = probability;
     }
 
-    public static Chance probability(int totalOutcomes, int sample) {
-        if (totalOutcomes <= 0 || sample < 0) {
-            throw new Error("Can't Flip with these values. ");
+    public static Chance create(double probability) {
+        if (probability > 1 || probability < 0) {
+            throw new Error("out of range probability!");
         }
 
-        return new Chance(Math.pow(totalOutcomes, -sample));
+        return new Chance(probability);
     }
 
-    public Chance getChance() {
-        return this;
+    public Chance getProbability() {
+        return new Chance(this.probability);
     }
 
     public Chance getEventNotOccurring() {
-        return new Chance(1 - this.chance);
+        return new Chance(1 - this.probability);
     }
 
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
-        Chance chance1 = (Chance) o;
-        return Double.compare(chance, chance1.chance) == 0;
+        Chance event = (Chance) o;
+        return Double.compare(probability, event.probability) == 0;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(chance);
+    public Chance or(Chance event) {
+        double result = this.probability + event.probability - this.probability * event.probability;
+        return new Chance(result);
     }
 
-    public Chance Or(Chance otherChance) {
-        double v = this.chance + otherChance.chance - this.chance * otherChance.chance;
-        return new Chance(v);
+    public Chance and(Chance event) {
+        return new Chance(this.probability * event.probability);
     }
 }
