@@ -3,12 +3,16 @@ package com.tw.bootcamp.p2;
 public class FlipCoin {
     public static final int TOTAL_POSSIBLE_OUTCOME = 1;
 
-    public static double flip(int possibleOutcomes, int coinCount) {
-        if (possibleOutcomes <= 0 || coinCount < 0) {
+    public static double flip(int totalOutcomes, int coins) {
+        if (totalOutcomes <= 0 || coins < 0) {
             throw new Error("Can't Flip with these values. ");
         }
 
-        return TOTAL_POSSIBLE_OUTCOME / Math.pow(possibleOutcomes, coinCount);
+        return  1 - TOTAL_POSSIBLE_OUTCOME / Math.pow(totalOutcomes, coins);
+    }
+
+    public static double getEventNotOccurring(int totalOutcomes, int coins){
+        return 1 - flip(totalOutcomes,coins);
     }
 
     public static double getTail() {
@@ -16,6 +20,6 @@ public class FlipCoin {
     }
 
     public static double notGettingTail() {
-        return 1 - FlipCoin.getTail();
+        return getEventNotOccurring(2,1);
     }
 }
