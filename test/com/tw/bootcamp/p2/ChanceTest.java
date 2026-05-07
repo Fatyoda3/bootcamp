@@ -48,6 +48,6 @@ public class ChanceTest {
     @Test
     void rollADice() {
         Chance dice = Chance.createDice(1);
-        assertEquals(0.16, dice.rollDice(),0.01);
+        assertEquals(0.16, dice.getProbabilityOfSample(),0.01);
     }
 }

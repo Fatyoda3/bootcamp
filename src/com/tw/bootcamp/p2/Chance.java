@@ -1,7 +1,6 @@
 package com.tw.bootcamp.p2;
 
 public class Chance {
-    public static final int TOTAL_POSSIBLE_OUTCOME = 1;
     private final int totalOutcomes;
     private final int sample;
 
@@ -10,7 +9,7 @@ public class Chance {
             throw new Error("Can't Flip with these values. ");
         }
 
-        return TOTAL_POSSIBLE_OUTCOME / Math.pow(totalOutcomes, sample);
+        return Math.pow(totalOutcomes, -sample);
     }
 
     private Chance(int totalOutcomes, int sample) {
@@ -34,7 +33,7 @@ public class Chance {
         return 1 - probability(this.totalOutcomes, this.sample);
     }
 
-    public double rollDice() {
+    public double getProbabilityOfSample() {
         return probability(this.totalOutcomes, this.sample);
     }
 
