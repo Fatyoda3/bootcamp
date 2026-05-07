@@ -1,18 +1,13 @@
 package com.tw;
 
-import com.tw.bootcamp.person.Person;
+import com.tw.bootcamp.problem_1.Rectangle;
 
 public class Main {
 
     void main() {
-        Person person = new Person("name");
-        String name = person.getName();
-        System.out.println(name);
-
-    }
-
-    public static void printHello() {
-        System.out.println("Hello World!");
+        Rectangle rectangle = new Rectangle(20, 20);
+        double area = rectangle.calculateArea();
+        System.out.print(area);
     }
 
 }
