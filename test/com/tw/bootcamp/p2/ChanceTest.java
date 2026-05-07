@@ -9,35 +9,25 @@ public class ChanceTest {
     @Test
     void shouldReturnHalf() {
         Chance chance = new Chance(0.5);
-        assertEquals(0.5, chance.getChance());
+        assertEquals(new Chance(0.5), chance.getChance());
     }
 
     @Test
     void shouldReturnChanceOfNotGettingTail() {
         Chance chance = new Chance(0.5);
-        assertEquals(0.5, chance.getEventNotOccurring());
+        assertEquals(new Chance(0.5), chance.getEventNotOccurring());
     }
 
     @Test
-    void probabilityOfTwoCoinTossAtLeastOneTail() {
-        Chance chance = new Chance(0.75);
-        assertEquals(0.75, chance.getChance());
+    void checkingTheProbabilityOfAtLeastOneTail() {
+        Chance coinOne = new Chance(0.5);
+        Chance coinTwo = new Chance(0.5);
+        assertEquals(new Chance(0.75), coinOne.Or(coinTwo));
     }
 
     @Test
-    void probabilityTwoCoinsGetTail() {
-        Chance chance = new Chance(0.75);
-        assertEquals(0.75, chance.getChance());
+    void probabilityOfDiceRollLandingA3() {
+        assertEquals(new Chance(0.25),Chance.probability(4,1));
     }
 
-    @Test
-    void rollADice() {
-        Chance chance = new Chance(0.75);
-        assertEquals(0.25, chance.getEventNotOccurring());
-    }
-
-    @Test
-    void calculateTheProbabilityOfDiceRoll() {
-        assertEquals(0.16,Chance.probability(6,1),0.01);
-    }
 }
