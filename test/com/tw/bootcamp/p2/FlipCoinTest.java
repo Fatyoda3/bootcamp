@@ -17,6 +17,11 @@ public class FlipCoinTest {
     }
 
     @Test
+    void shouldReturnChanceOfGettingNotTail() {
+        assertEquals(0.5, FlipCoin.notGettingTail());
+    }
+
+    @Test
     void shouldThrowAnError() {
         assertThrows(Error.class, () -> FlipCoin.flip(-1, 0));
     }

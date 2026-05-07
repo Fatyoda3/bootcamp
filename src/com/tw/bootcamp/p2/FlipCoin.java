@@ -12,6 +12,10 @@ public class FlipCoin {
     }
 
     public static double getTail() {
-        return flip(2 ,1);
+        return flip(2, 1);
+    }
+
+    public static double notGettingTail() {
+        return 1 - FlipCoin.getTail();
     }
 }
