@@ -19,6 +19,10 @@ public class FlipCoin {
         return 1 - flip(totalOutcomes,coins);
     }
 
+    public static double rollDice(int totalOutcomes, int dice) {
+        return  flip(totalOutcomes,dice);
+    }
+
 
     public static double getTail() {
         return flip(2, 1);

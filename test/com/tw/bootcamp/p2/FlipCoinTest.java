@@ -42,7 +42,7 @@ public class FlipCoinTest {
     }
 
     @Test
-    void rollAdice() {
-        assertEquals(0.16, FlipCoin.flip(6,1),0.01);
+    void rollADice() {
+        assertEquals(0.16, FlipCoin.rollDice(6,1),0.01);
     }
 }
