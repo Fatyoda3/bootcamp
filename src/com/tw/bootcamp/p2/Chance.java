@@ -1,8 +1,11 @@
 package com.tw.bootcamp.p2;
 
 public class Chance {
-    private final int totalOutcomes;
-    private final int sample;
+    private final double chance;
+
+    public Chance(double chance) {
+        this.chance = chance;
+    }
 
     public static double probability(int totalOutcomes, int sample) {
         if (totalOutcomes <= 0 || sample < 0) {
@@ -12,29 +15,11 @@ public class Chance {
         return Math.pow(totalOutcomes, -sample);
     }
 
-    private Chance(int totalOutcomes, int sample) {
-        this.totalOutcomes = totalOutcomes;
-        this.sample = sample;
-    }
-
-    public static Chance createDice(int dice) {
-        return new Chance(6, dice);
-    }
-
-    public static Chance createCoins(int coins) {
-        return new Chance(2, coins);
+    public double getChance() {
+        return this.chance;
     }
 
     public double getEventNotOccurring() {
-        return 1 - probability(this.totalOutcomes, this.sample);
+        return 1 - this.chance;
     }
-
-    public double getProbabilityOfMultipleSample() {
-        return 1 - probability(this.totalOutcomes, this.sample);
-    }
-
-    public double getProbabilityOfSample() {
-        return probability(this.totalOutcomes, this.sample);
-    }
-
 }
