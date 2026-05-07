@@ -5,6 +5,16 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class RectangleTest {
+    @Test
+    void shouldInstantiateRectangle() {
+        Rectangle rectangle = new Rectangle(1, 1);
+        assertInstanceOf(Rectangle.class, rectangle);
+    }
+
+    @Test
+    void shouldThrowAnInvalidDimensionError() {
+        assertThrows(Error.class, () -> Rectangle.createRectangle(-1, -1));
+    }
 
     @Test
     void shouldReturnCalculatedArea() {

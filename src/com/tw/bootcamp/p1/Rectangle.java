@@ -7,7 +7,18 @@ public class Rectangle implements Quadrilateral {
     public Rectangle(double width, double height) {
         this.width = width;
         this.height = height;
+    }
 
+    public static Rectangle createRectangle(double width, double height) {
+        if (width <= 0 || height <= 0) {
+            throw new Error("Invalid Dimensions.");
+        }
+
+        return new Rectangle(width, height);
+    }
+
+    public static Rectangle createSquare(double width) {
+        return Rectangle.createRectangle(width, width);
     }
 
     @Override
