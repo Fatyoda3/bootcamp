@@ -18,6 +18,11 @@ class RectangleTest {
     }
 
     @Test
+    void shouldThrowAnInvalidDimensionErrorForTwoValues() {
+        assertThrows(Error.class, () -> Rectangle.createRectangle(1, -5));
+    }
+
+    @Test
     void shouldReturnCalculatedArea() {
         Rectangle rectangle = Rectangle.createRectangle(20, 20);
         assertEquals(400.0, rectangle.calculateArea());
@@ -31,7 +36,7 @@ class RectangleTest {
 
     @Test
     void ShouldHandleFloatErrorForPerimeterCalculation() {
-        Rectangle rectangle = Rectangle.createRectangle(3.67,1.22);
+        Rectangle rectangle = Rectangle.createRectangle(3.67, 1.22);
 
         assertEquals(9.8, rectangle.calculatePerimeter(), 0.1);
 
