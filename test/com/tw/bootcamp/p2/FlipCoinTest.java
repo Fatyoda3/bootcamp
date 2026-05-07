@@ -38,6 +38,11 @@ public class FlipCoinTest {
 
     @Test
     void flipTwoCoinsGetTail() {
-        assertEquals(0.75, FlipCoin.flip(2,2));
+        assertEquals(0.75, FlipCoin.getProbabilityOfMultipleCoins(2,2));
+    }
+
+    @Test
+    void rollAdice() {
+        assertEquals(0.16, FlipCoin.flip(6,1),0.01);
     }
 }

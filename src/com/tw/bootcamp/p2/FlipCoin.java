@@ -8,12 +8,17 @@ public class FlipCoin {
             throw new Error("Can't Flip with these values. ");
         }
 
-        return  1 - TOTAL_POSSIBLE_OUTCOME / Math.pow(totalOutcomes, coins);
+        return  TOTAL_POSSIBLE_OUTCOME / Math.pow(totalOutcomes, coins);
     }
 
     public static double getEventNotOccurring(int totalOutcomes, int coins){
         return 1 - flip(totalOutcomes,coins);
     }
+
+    public static double getProbabilityOfMultipleCoins(int totalOutcomes, int coins) {
+        return 1 - flip(totalOutcomes,coins);
+    }
+
 
     public static double getTail() {
         return flip(2, 1);
