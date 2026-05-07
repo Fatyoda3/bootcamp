@@ -26,5 +26,9 @@ public class FlipCoinTest {
         assertThrows(Error.class, () -> FlipCoin.flip(-1, 0));
     }
 
+    @Test
+    void shouldThrowAnErrorWithSwappedParams() {
+        assertThrows(Error.class, () -> FlipCoin.flip(1, -1));
+    }
 
 }
