@@ -1,6 +1,6 @@
 package com.tw;
 
-import com.tw.bootcamp.problem_1.Rectangle;
+import com.tw.bootcamp.p1.Rectangle;
 
 public class Main {
 

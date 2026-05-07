@@ -1,4 +1,4 @@
-package com.tw.bootcamp.problem_1;
+package com.tw.bootcamp.p1;
 
 public class Rectangle implements Quadrilateral {
     private final double width;
@@ -13,5 +13,10 @@ public class Rectangle implements Quadrilateral {
     @Override
     public double calculateArea() {
         return this.width * this.height;
+    }
+
+    @Override
+    public double calculatePerimeter() {
+        return 2 * (this.width + this.height);
     }
 }
