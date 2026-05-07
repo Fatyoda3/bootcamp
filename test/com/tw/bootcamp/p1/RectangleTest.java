@@ -5,9 +5,10 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class RectangleTest {
+
     @Test
     void shouldInstantiateRectangle() {
-        Rectangle rectangle = new Rectangle(1, 1);
+        Rectangle rectangle = Rectangle.createRectangle(1, 1);
         assertInstanceOf(Rectangle.class, rectangle);
     }
 
@@ -18,26 +19,29 @@ class RectangleTest {
 
     @Test
     void shouldReturnCalculatedArea() {
-        Rectangle rectangle = new Rectangle(20, 20);
+        Rectangle rectangle = Rectangle.createRectangle(20, 20);
         assertEquals(400.0, rectangle.calculateArea());
     }
 
     @Test
     void shouldReturnCalculatedPerimeter() {
-        Rectangle rectangle = new Rectangle(20, 20);
+        Rectangle rectangle = Rectangle.createRectangle(20, 20);
         assertEquals(80.0, rectangle.calculatePerimeter());
     }
 
     @Test
     void ShouldHandleFloatErrorForPerimeterCalculation() {
-        Rectangle rectangle = new Rectangle((double) 11 / 3, (double) 11 / 9);
+        Rectangle rectangle = Rectangle.createRectangle(3.67,1.22);
+
         assertEquals(9.8, rectangle.calculatePerimeter(), 0.1);
 
     }
 
     @Test
     public void ShouldHandleFloatErrForAreaCalculation() {
-        Rectangle rectangle = new Rectangle((double) 11 / 3, (double) 11 / 9);
+        double floatyWidth = (double) 11 / 3;
+        double floatyHeight = (double) 11 / 9;
+        Rectangle rectangle = Rectangle.createRectangle(floatyWidth, floatyHeight);
         assertEquals(4.48, rectangle.calculateArea(), 0.01);
     }
 
