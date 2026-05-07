@@ -14,18 +14,21 @@ class RectangleTest {
 
     @Test
     void shouldReturnCalculatedPerimeter() {
-        assertEquals(80.0, new Rectangle(20, 20).calculatePerimeter());
+        Rectangle rectangle = new Rectangle(20, 20);
+        assertEquals(80.0, rectangle.calculatePerimeter());
     }
 
     @Test
     void ShouldHandleFloatErrorForPerimeterCalculation() {
-        assertEquals(9.8, new Rectangle((double) 11 / 3, (double) 11 / 9).calculatePerimeter(), 0.1);
+        Rectangle rectangle = new Rectangle((double) 11 / 3, (double) 11 / 9);
+        assertEquals(9.8, rectangle.calculatePerimeter(), 0.1);
 
     }
 
     @Test
     public void ShouldHandleFloatErrForAreaCalculation() {
-        assertEquals(4.48, new Rectangle((double) 11 / 3, (double) 11 / 9).calculateArea(), 0.01);
+        Rectangle rectangle = new Rectangle((double) 11 / 3, (double) 11 / 9);
+        assertEquals(4.48, rectangle.calculateArea(), 0.01);
     }
 
 }
