@@ -4,6 +4,7 @@ import java.util.Objects;
 
 public class Length {
 
+    public static final double CM_INCH_RATIO = 2.5;
     private final double measurement;
     private final UnitFactors unit;
 
@@ -41,12 +42,12 @@ public class Length {
     }
 
     public Length add(Length length) {
-        if (this.unit != length.unit) {
-            throw new Error("Incompatible type");
-        }
+        double addedLength = normalizeUnit(this) + normalizeUnit(length);
+        return createInches(normalizeToInches(addedLength));
+    }
 
-        double addedLength = this.measurement + length.measurement;
-        return createInches(addedLength);
+    private double normalizeToInches(double addedLength) {
+        return addedLength / CM_INCH_RATIO;
     }
 
 

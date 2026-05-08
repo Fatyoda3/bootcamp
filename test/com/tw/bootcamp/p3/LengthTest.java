@@ -86,9 +86,9 @@ public class LengthTest {
     }
 
     @Test
-    void shouldThrowErrorIncompatibleTypes() {
+    void shouldReturnTheAddedLengthInInches() {
         Length twoInches = Length.createInches(2);
-        Length twoFeet = Length.createFt(2);
-        assertThrows(Error.class, ()-> twoInches.add(twoFeet));
+        Length oneIncheInCm = Length.createCm(2.5);
+        assertEquals(Length.createInches(3), twoInches.add(oneIncheInCm));
     }
 }
