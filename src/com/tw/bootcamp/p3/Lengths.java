@@ -3,15 +3,20 @@ package com.tw.bootcamp.p3;
 import java.util.Objects;
 
 public class Lengths {
-    public static final String CM = "cm";
-    public static final String FT = "ft";
-    public static final String IN = "in";
     private final double measurement;
-    private final String unit;
+    private final Units unit;
 
-    public Lengths(double measurement, String unit) {
+    private Lengths(double measurement, Units unit) {
         this.measurement = measurement;
         this.unit = unit;
+    }
+
+    public static Lengths create (double measurement, Units unit) {
+        if (measurement < 0.0) {
+            throw new Error("Invalid length. ");
+        }
+
+        return new Lengths(measurement, unit);
     }
 
     @Override
@@ -28,8 +33,8 @@ public class Lengths {
 
     private double normalizeUnitIntoCm(Lengths length) {
         return switch (length.unit) {
-            case FT -> length.measurement * 30;
-            case IN -> length.measurement * 2.5;
+            case Units.FT -> length.measurement * 30;
+            case Units.IN -> length.measurement * 2.5;
             default -> length.measurement;
         };
     }
