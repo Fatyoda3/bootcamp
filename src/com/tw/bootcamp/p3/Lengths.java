@@ -42,10 +42,6 @@ public class Lengths {
     }
 
     private double normalizeUnitIntoCm(Lengths length) {
-        return switch (length.unit) {
-            case Units.FT -> length.measurement * 30;
-            case Units.IN -> length.measurement * 2.5;
-            default -> length.measurement;
-        };
+        return  length.measurement * length.unit.getProportion();
     }
 }
