@@ -11,12 +11,22 @@ public class Lengths {
         this.unit = unit;
     }
 
-    public static Lengths create (double measurement, Units unit) {
+    private static Lengths create(double measurement, Units unit) {
         if (measurement < 0.0) {
             throw new Error("Invalid length. ");
         }
 
         return new Lengths(measurement, unit);
+    }
+
+    public static Lengths createInches(double measurement) {
+        return create(measurement, Units.IN);
+    }
+    public static Lengths createCm(double measurement) {
+        return create(measurement, Units.CM);
+    }
+    public static Lengths createFt(double measurement) {
+        return create(measurement, Units.FT);
     }
 
     @Override
