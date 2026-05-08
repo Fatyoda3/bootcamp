@@ -55,6 +55,16 @@ public class LengthsTest {
     }
 
     @Test
+    void shouldCompareMMToCm() {
+        assertEquals(Lengths.createMMs(10), Lengths.createCm(1));
+    }
+
+    @Test
+    void shouldCompare1MMTo1Cm() {
+        assertNotEquals(Lengths.createMMs(1), Lengths.createCm(1));
+    }
+
+    @Test
     void shouldThrowErrorInvalidLength() {
         assertThrows(Error.class, ()-> Lengths.createFt(-1));
     }

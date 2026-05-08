@@ -22,11 +22,17 @@ public class Lengths {
     public static Lengths createInches(double measurement) {
         return create(measurement, Units.IN);
     }
+
     public static Lengths createCm(double measurement) {
         return create(measurement, Units.CM);
     }
+
     public static Lengths createFt(double measurement) {
         return create(measurement, Units.FT);
+    }
+
+    public static Lengths createMMs(double measurement) {
+        return create(measurement, Units.MM);
     }
 
     @Override
@@ -42,6 +48,6 @@ public class Lengths {
     }
 
     private double normalizeUnitIntoCm(Lengths length) {
-        return  length.measurement * length.unit.getProportion();
+        return length.measurement * length.unit.proportion;
     }
 }
