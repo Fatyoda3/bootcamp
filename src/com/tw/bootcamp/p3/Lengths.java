@@ -3,6 +3,9 @@ package com.tw.bootcamp.p3;
 import java.util.Objects;
 
 public class Lengths {
+    public static final String CM = "cm";
+    public static final String FT = "ft";
+    public static final String IN = "in";
     private final double measurement;
     private final String unit;
 
@@ -10,7 +13,6 @@ public class Lengths {
         this.measurement = measurement;
         this.unit = unit;
     }
-
 
     @Override
     public boolean equals(Object o) {
@@ -26,23 +28,16 @@ public class Lengths {
     }
 
     private double convert(Lengths otherMeasure) {
-        String unitToConvert = otherMeasure.unit;
-        if (Objects.equals(unitToConvert, this.unit)) {
+
+        if (Objects.equals(otherMeasure.unit, this.unit)) {
             return otherMeasure.measurement;
         }
-        if (Objects.equals(unitToConvert, "cm") ) {
-            return this.measurement * 2.5;
-        }
-        if (Objects.equals(unitToConvert, "ft")) {
-            return this.measurement / 12;
-        }
 
-        if (Objects.equals(unitToConvert, "in")) {
-            return this.measurement * 12;
-        }
-
-
-
-        return otherMeasure.measurement;
+        return switch (otherMeasure.unit) {
+            case CM -> this.measurement * 2.5;
+            case FT -> this.measurement / 12;
+            case IN -> this.measurement * 12;
+            default -> otherMeasure.measurement;
+        };
     }
 }

@@ -13,7 +13,12 @@ public class LengthsTest {
 
     @Test
     void shouldCreateAnInstanceOf1Inch() {
-        assertInstanceOf(Lengths.class, new Lengths(5, "in"));
+        assertInstanceOf(Lengths.class, new Lengths(1, "in"));
+    }
+
+    @Test
+    void shouldCreateAnInstanceOf1cm() {
+        assertInstanceOf(Lengths.class, new Lengths(1, "cm"));
     }
 
     @Test
