@@ -82,6 +82,13 @@ public class LengthTest {
     void shouldReturnTheNewAddedLength(){
         Length twoInches = Length.createInches(2);
         Length threeInches = Length.createInches(3);
-        assertEquals(Length.createInches(5), twoInches.addIn(threeInches));
+        assertEquals(Length.createInches(5), twoInches.add(threeInches));
+    }
+
+    @Test
+    void shouldThrowErrorIncompatibleTypes() {
+        Length twoInches = Length.createInches(2);
+        Length twoFeet = Length.createFt(2);
+        assertThrows(Error.class, ()-> twoInches.add(twoFeet));
     }
 }

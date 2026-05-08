@@ -2,7 +2,7 @@ package com.tw.bootcamp.p3;
 
 import java.util.Objects;
 
-public class Length  {
+public class Length {
 
     private final double measurement;
     private final UnitFactors unit;
@@ -37,11 +37,15 @@ public class Length  {
     }
 
     protected double normalizeUnit(Length measure) {
-        return  measure.unit.normalize(measure.measurement);
+        return measure.unit.normalize(measure.measurement);
     }
 
-    public Length addIn(Length length) {
-        Double addedLength = this.measurement + length.measurement;
+    public Length add(Length length) {
+        if (this.unit != length.unit) {
+            throw new Error("Incompatible type");
+        }
+
+        double addedLength = this.measurement + length.measurement;
         return createInches(addedLength);
     }
 
@@ -61,6 +65,5 @@ public class Length  {
     public static Length createMMs(double measurement) {
         return Length.create(measurement, UnitFactors.MM);
     }
-
 
 }
