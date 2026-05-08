@@ -47,4 +47,9 @@ public class Volume  {
     protected double normalizeVolume(Volume measure) {
         return  measure.unit.normalize(measure.measurement);
     }
+
+    public Volume add(Volume measure) {
+        double addedVolume = normalizeVolume(this) + normalizeVolume(measure);
+        return createLiters(addedVolume);
+    }
 }

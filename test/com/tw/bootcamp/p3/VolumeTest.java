@@ -14,10 +14,15 @@ public class VolumeTest {
 
     @Test
     void shouldCompareHalfGallonToLiters() {
-        Volume halfLiters = Volume.createLiters(3.78 /2 );
+        Volume halfLiters = Volume.createLiters(3.78 / 2);
         Volume halfGallon = Volume.createGallons(0.5);
         assertEquals(halfGallon, halfLiters);
     }
 
-
+    @Test
+    void shouldAddAndReturnInLiters() {
+        Volume fiveLiters = Volume.createLiters(5);
+        Volume gallon = Volume.createGallons(1);
+        assertEquals(Volume.createLiters(8.78), fiveLiters.add(gallon));
+    }
 }

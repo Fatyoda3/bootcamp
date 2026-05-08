@@ -50,7 +50,6 @@ public class Length {
         return addedLength / CM_INCH_RATIO;
     }
 
-
     public static Length createInches(double measurement) {
         return Length.create(measurement, UnitFactors.IN);
     }
