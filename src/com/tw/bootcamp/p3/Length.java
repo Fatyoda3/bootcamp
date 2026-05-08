@@ -17,15 +17,17 @@ public class Length {
         if (measurement < 0.0) {
             throw new Error("Invalid Measurement. ");
         }
+        double normalizedValue = normalizeUnit(measurement, unit);
 
-        return new Length(measurement, unit);
+        return new Length(normalizedValue, unit);
     }
 
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
-        Length unit = (Length) o;
-        return Double.compare(normalizeUnit(this), normalizeUnit(unit)) == 0;
+        Length measure = (Length) o;
+
+        return Double.compare(this.measurement, measure.measurement) == 0;
     }
 
     @Override
@@ -33,21 +35,17 @@ public class Length {
         return Objects.hash(measurement, unit);
     }
 
-    public boolean compareTo(Length unit) {
-        return Double.compare(normalizeUnit(this), normalizeUnit(unit)) == 0;
+    public boolean compareTo(Length measure) {
+        return Double.compare(this.measurement, measure.measurement) == 0;
     }
 
-    protected double normalizeUnit(Length measure) {
-        return measure.unit.normalize(measure.measurement);
+    protected static double normalizeUnit(double measurement, UnitFactors unit) {
+        return unit.normalize(measurement);
     }
 
     public Length add(Length length) {
-        double addedLength = normalizeUnit(this) + normalizeUnit(length);
-        return createInches(normalizeToInches(addedLength));
-    }
-
-    private double normalizeToInches(double addedLength) {
-        return addedLength / CM_INCH_RATIO;
+        double addedLength = this.measurement + length.measurement;
+        return createInches(addedLength);
     }
 
     public static Length createInches(double measurement) {

@@ -16,7 +16,8 @@ public class Volume  {
             throw new Error("Invalid Measurement. ");
         }
 
-        return new Volume(measurement, unit);
+        double normalizedValue = normalizeVolume(measurement, unit);
+        return new Volume(normalizedValue, unit);
     }
 
 
@@ -32,7 +33,7 @@ public class Volume  {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Volume unit = (Volume) o;
-        return Double.compare(normalizeVolume(this), normalizeVolume(unit)) == 0;
+        return Double.compare(this.measurement, this.measurement) == 0;
     }
 
     @Override
@@ -40,16 +41,20 @@ public class Volume  {
         return Objects.hash(measurement, unit);
     }
 
-    public boolean compareTo(Volume unit) {
-        return Double.compare(normalizeVolume(this), normalizeVolume(unit)) == 0;
+//    public boolean compareTo(Volume unit) {
+//        return Double.compare(normalizeVolume(this), normalizeVolume(unit)) == 0;
+//    }
+
+    protected static  double normalizeVolume(double measurement, UnitFactors unit) {
+        return  unit.normalize(measurement);
     }
 
-    protected double normalizeVolume(Volume measure) {
-        return  measure.unit.normalize(measure.measurement);
-    }
+//    protected double normalizeVolume(Volume measure) {
+//        return  measure.unit.normalize(measure.measurement);
+//    }
 
     public Volume add(Volume measure) {
-        double addedVolume = normalizeVolume(this) + normalizeVolume(measure);
+        double addedVolume = this.measurement + measure.measurement;
         return createLiters(addedVolume);
     }
 }
