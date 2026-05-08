@@ -18,8 +18,7 @@ public class Lengths {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Lengths lengths = (Lengths) o;
-        double converted = this.convert(lengths);
-        return Double.compare(converted, lengths.measurement) == 0;
+        return Double.compare(normalizeUnitIntoCm(this), normalizeUnitIntoCm(lengths)) == 0;
     }
 
     @Override
@@ -27,17 +26,11 @@ public class Lengths {
         return Objects.hash(measurement, unit);
     }
 
-    private double convert(Lengths otherMeasure) {
-
-        if (Objects.equals(otherMeasure.unit, this.unit)) {
-            return otherMeasure.measurement;
-        }
-
-        return switch (otherMeasure.unit) {
-            case CM -> this.measurement * 2.5;
-            case FT -> this.measurement / 12;
-            case IN -> this.measurement * 12;
-            default -> otherMeasure.measurement;
+    private double normalizeUnitIntoCm(Lengths length) {
+        return switch (length.unit) {
+            case FT -> length.measurement * 30;
+            case IN -> length.measurement * 2.5;
+            default -> length.measurement;
         };
     }
 }
