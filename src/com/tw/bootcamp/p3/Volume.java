@@ -2,22 +2,23 @@ package com.tw.bootcamp.p3;
 
 import java.util.Objects;
 
-public class Volume {
+public class Volume  {
     private final double measurement;
     private final UnitFactors unit;
 
-    private Volume(double measurement, UnitFactors unit) {
+    protected Volume(double measurement, UnitFactors unit) {
         this.measurement = measurement;
         this.unit = unit;
     }
 
-    private static Volume create(double measurement, UnitFactors unit) {
+    protected static Volume create(double measurement, UnitFactors unit) {
         if (measurement < 0.0) {
-            throw new Error("Invalid Volume. ");
+            throw new Error("Invalid Measurement. ");
         }
 
         return new Volume(measurement, unit);
     }
+
 
     public static Volume createLiters(double measurement) {
         return create(measurement, UnitFactors.LITER);
@@ -31,7 +32,7 @@ public class Volume {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Volume unit = (Volume) o;
-        return Double.compare(normalizeUnitIntoVolume(this), normalizeUnitIntoVolume(unit)) == 0;
+        return Double.compare(normalizeVolume(this), normalizeVolume(unit)) == 0;
     }
 
     @Override
@@ -39,11 +40,11 @@ public class Volume {
         return Objects.hash(measurement, unit);
     }
 
-    public boolean compareTo(Volume length) {
-        return Double.compare(normalizeUnitIntoVolume(this), normalizeUnitIntoVolume(length)) == 0;
+    public boolean compareTo(Volume unit) {
+        return Double.compare(normalizeVolume(this), normalizeVolume(unit)) == 0;
     }
 
-    private double normalizeUnitIntoVolume(Volume volume) {
-        return volume.measurement * volume.unit.ratio;
+    protected double normalizeVolume(Volume measure) {
+        return  measure.unit.normalize(measure.measurement);
     }
 }

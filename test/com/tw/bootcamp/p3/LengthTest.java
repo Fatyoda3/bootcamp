@@ -77,8 +77,11 @@ public class LengthTest {
         Length feetInCm = Length.createCm(30);
         assertTrue(feet.compareTo(feetInCm));
     }
-    @Test
-    void shouldReturnTrueForEquals(){
 
+    @Test
+    void shouldReturnTheNewAddedLength(){
+        Length twoInches = Length.createInches(2);
+        Length threeInches = Length.createInches(3);
+        assertEquals(Length.createInches(5), twoInches.addIn(threeInches));
     }
 }
