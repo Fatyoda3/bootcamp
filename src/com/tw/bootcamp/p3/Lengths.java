@@ -11,6 +11,7 @@ public class Lengths {
         this.unit = unit;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
@@ -29,13 +30,19 @@ public class Lengths {
         if (Objects.equals(unitToConvert, this.unit)) {
             return otherMeasure.measurement;
         }
-
+        if (Objects.equals(unitToConvert, "cm") ) {
+            return this.measurement * 2.5;
+        }
         if (Objects.equals(unitToConvert, "ft")) {
             return this.measurement / 12;
         }
+
         if (Objects.equals(unitToConvert, "in")) {
             return this.measurement * 12;
         }
+
+
+
         return otherMeasure.measurement;
     }
 }
