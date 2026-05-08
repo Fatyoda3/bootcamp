@@ -7,18 +7,18 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ParkingLotTest {
     @Test
     void shouldReturnInstanceOfParkingLot() {
-        assertInstanceOf(ParkingLot.class, new ParkingLot(1));
+        assertInstanceOf(ParkingLot.class, ParkingLot.create(1));
     }
 
     @Test
     void parkACar() {
-        ParkingLot parkingLot = new ParkingLot(5);
+        ParkingLot parkingLot = ParkingLot.create(5);
         assertTrue(parkingLot.park("car"));
     }
 
     @Test
     void parkTwoCars() {
-        ParkingLot parkingLot = new ParkingLot(5);
+        ParkingLot parkingLot = ParkingLot.create(5);
         boolean isCarParked = parkingLot.park("car");
         boolean isSecondCarParked = parkingLot.park("car");
 
@@ -28,7 +28,7 @@ public class ParkingLotTest {
 
     @Test
     void shouldReturnParkingLotIsFull() {
-        ParkingLot parkingLot = new ParkingLot(2);
+        ParkingLot parkingLot = ParkingLot.create(2);
         parkingLot.park("car");
         parkingLot.park("car");
 
@@ -38,11 +38,15 @@ public class ParkingLotTest {
 
     @Test
     void shouldNotParkCarAsLotIsFull() {
-        ParkingLot parkingLot = new ParkingLot(2);
+        ParkingLot parkingLot = ParkingLot.create(2);
         parkingLot.park("car");
         parkingLot.park("car");
         boolean isParked = parkingLot.park("car");
         assertFalse(isParked);
+    }
 
+    @Test
+    void shouldThrowError() {
+        assertThrows(Error.class, ()-> ParkingLot.create(0));
     }
 }
