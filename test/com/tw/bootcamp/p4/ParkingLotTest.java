@@ -49,4 +49,5 @@ public class ParkingLotTest {
     void shouldThrowError() {
         assertThrows(Error.class, ()-> ParkingLot.create(0));
     }
+
 }
