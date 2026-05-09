@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Attendant {
     private final int lotCount;
     private final ArrayList<ParkingLot> parkingLots;
+    private Integer nextId = 0;
 
     private Attendant(int lotCount, ArrayList<ParkingLot> parkingLots) {
         this.lotCount = lotCount;
@@ -26,13 +27,19 @@ public class Attendant {
         return new Attendant(lotCount, parkingLots);
     }
 
-    public boolean park(String car) {
+    public Ack park(String car) {
+        nextId += 1;
+        String parkingId = car.concat(nextId.toString());
+
         for (ParkingLot parkingLot : this.parkingLots) {
+
             if (!parkingLot.isFull()) {
-                return parkingLot.park(car);
+                parkingLot.park(car);
+
+                return new Ack(parkingId, true);
             }
         }
 
-        return false;
+        return new Ack(parkingId, false);
     }
 }

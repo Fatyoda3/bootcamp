@@ -2,6 +2,8 @@ package com.tw.bootcamp.p4;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Objects;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class AttendantTest {
@@ -15,7 +17,12 @@ public class AttendantTest {
     @Test
     void shouldParkACar() {
         Attendant attendant = Attendant.createParkingAttendant(2, 2);
-        boolean isParked = attendant.park("car");
+        Ack car = attendant.park("car");
+
+        String id = car.id();
+        boolean isParked = car.isParked();
+
+        assertEquals("car1", id);
         assertTrue(isParked);
     }
 
@@ -24,7 +31,12 @@ public class AttendantTest {
         Attendant attendant = Attendant.createParkingAttendant(1, 2);
         attendant.park("car");
         attendant.park("car");
-        boolean isParked = attendant.park("car");
+        Ack car = attendant.park("car");
+
+        boolean isParked = car.isParked();
+        String id = car.id();
+
+        assertEquals("car3", id);
         assertFalse(isParked);
     }
 
