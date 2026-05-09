@@ -2,8 +2,6 @@ package com.tw.bootcamp.p4;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.Objects;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class AttendantTest {
@@ -41,7 +39,21 @@ public class AttendantTest {
     }
 
     @Test
+    void shouldParkACarForMulitpleLots() {
+        Attendant attendant = Attendant.createParkingAttendant(2, 2);
+        attendant.park("car");
+        attendant.park("car");
+        Ack car = attendant.park("car");
+
+        boolean isParked = car.isParked();
+        String id = car.id();
+        assertEquals("car3", id);
+        assertTrue(isParked);
+    }
+
+    @Test
     void shouldFailToCreateParkingLot() {
         assertThrows(Error.class, () -> Attendant.createParkingAttendant(-1, 2));
     }
+
 }

@@ -8,10 +8,10 @@ public class ParkingLot {
 
     private ParkingLot(int capacity) {
         this.totalCapacity = capacity;
-        this.slots = new ArrayList<>(this.totalCapacity);
+        this.slots = new ArrayList<>();
     }
 
-    public static  ParkingLot create(int capacity){
+    public static ParkingLot create(int capacity) {
         if (capacity < 1) {
             throw new Error("invalid capacity");
         }
@@ -20,14 +20,18 @@ public class ParkingLot {
 
 
     public boolean park(String car) {
-        if(this.isFull()) {
+        if (this.isFull()) {
             return false;
         }
 
         return slots.add(car);
     }
 
+    public int parkedCount() {
+        return this.slots.size();
+    }
+
     public boolean isFull() {
-        return this.slots.size() == this.totalCapacity ;
+        return this.parkedCount() == this.totalCapacity;
     }
 }
