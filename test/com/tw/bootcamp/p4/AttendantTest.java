@@ -2,6 +2,8 @@ package com.tw.bootcamp.p4;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class AttendantTest {
@@ -56,4 +58,14 @@ public class AttendantTest {
         assertThrows(Error.class, () -> Attendant.createParkingAttendant(-1, 2));
     }
 
+    @Test
+    void shouldReturnTrueAsParkingLotsAreFull() {
+        Attendant attendant = Attendant.createParkingAttendant(1, 2);
+        attendant.park("car");
+        attendant.park("car");
+
+        ArrayList<ParkingLot> available = attendant.getAllAvailableParkingLots(80);
+
+        assertTrue(available.isEmpty());
+    }
 }

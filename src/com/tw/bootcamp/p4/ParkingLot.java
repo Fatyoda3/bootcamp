@@ -31,6 +31,10 @@ public class ParkingLot {
         return this.slots.size();
     }
 
+    public boolean isBelowThreshold(double threshold) {
+        return ((double) this.slots.size() / this.totalCapacity) * 100.0 <= threshold;
+    }
+
     public boolean isFull() {
         return this.parkedCount() == this.totalCapacity;
     }

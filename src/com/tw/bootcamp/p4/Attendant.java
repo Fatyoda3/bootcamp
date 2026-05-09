@@ -49,4 +49,7 @@ public class Attendant {
         System.out.println(report);
     }
 
+    public ArrayList<ParkingLot> getAllAvailableParkingLots(int threshold) {
+        return assistant.getAllAvailableParkingLots(threshold);
+    }
 }

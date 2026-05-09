@@ -33,4 +33,15 @@ public class Assistant {
     }
 
 
+    public ArrayList<ParkingLot> getAllAvailableParkingLots(int threshold) {
+        ArrayList<ParkingLot> availableParkingLots = new ArrayList<>();
+
+        for (ParkingLot parkingLot : parkingLots) {
+            if (parkingLot.isBelowThreshold(threshold)) {
+                availableParkingLots.add(parkingLot);
+            }
+        }
+
+        return availableParkingLots;
+    }
 }
