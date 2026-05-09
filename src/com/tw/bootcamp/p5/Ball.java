@@ -1,17 +1,13 @@
 package com.tw.bootcamp.p5;
 
 public class Ball {
-    private final Color color;
+    private final BallColor ballColor;
 
-    public Ball(Color color) {
-        this.color = color;
+    public Ball(BallColor ballColor) {
+        this.ballColor = ballColor;
     }
 
-    public boolean isGreenColor() {
-        return this.color == Color.GREEN;
-    }
-
-    public boolean isSameColor(Color color) {
-        return this.color == color;
+    public boolean isSameColor(BallColor ballColor) {
+        return this.ballColor == ballColor;
     }
 }
