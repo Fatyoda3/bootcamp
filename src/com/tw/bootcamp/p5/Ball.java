@@ -1,5 +1,7 @@
 package com.tw.bootcamp.p5;
 
+import java.util.function.Predicate;
+
 public class Ball {
     private final BallColor ballColor;
 
@@ -10,4 +12,5 @@ public class Ball {
     public boolean isSameColor(BallColor ballColor) {
         return this.ballColor == ballColor;
     }
+
 }

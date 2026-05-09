@@ -1,16 +1,21 @@
 package com.tw.bootcamp.p5;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class Bag {
 
     private final int totalCapacity;
+    private ArrayList<BagRules> rules = null;
 
     private int r = 0;
     private int g = 0;
     private int b = 0;
     private int y = 0;
 
-    public Bag(int totalCapacity) {
+    public Bag(int totalCapacity, ArrayList<BagRules> rules) {
         this.totalCapacity = totalCapacity;
+        this.rules = rules;
     }
 
     public boolean addBall(Ball ball) {
@@ -23,20 +28,35 @@ public class Bag {
         return true;
     }
 
+
     private boolean isPlacementNotPossible(Ball ball) {
-        if (ball.isSameColor(BallColor.GREEN)) {
-            return this.g + 1 > 3;
-        }
+//        System.out.println(this.rules.stream().anyMatch(rule-> rule.applyRule(createDataSet())));
+       if ( ball.isSameColor(BallColor.GREEN) || ball.isSameColor(BallColor.RED) ||ball.isSameColor(BallColor.YELLOW))
+        return this.rules.stream().anyMatch(rule-> rule.applyRule(createDataSet()));
+       return false;
+//        if (ball.isSameColor(BallColor.GREEN)) {
+//            return BagRules.MAX_3_GREENS.applyRule(createDataSet());
+//        }
+//
+//        if (ball.isSameColor(BallColor.RED)) {
+//            return BagRules.RED_PROPORTION.applyRule(createDataSet());
+//        }
+//
+//        if (ball.isSameColor(BallColor.YELLOW)) {
+//            return BagRules.YELLOW_PROPORTION.applyRule(createDataSet());
+//        }
+//
+//        return BagRules.UNLIMITED_BLUE.applyRule(createDataSet());
+    }
 
-        if (ball.isSameColor(BallColor.RED)) {
-            return this.r >= (2 * this.g);
-        }
-
-        if (ball.isSameColor(BallColor.YELLOW)) {
-            return (this.y + 1) >= (0.4 * (this.totalBalls() + 1));
-        }
-
-        return false;
+    private HashMap<String, Integer> createDataSet() {
+        HashMap<String, Integer> data = new HashMap<>();
+        data.put("g", this.g);
+        data.put("b", this.b);
+        data.put("y", this.y);
+        data.put("r", this.r);
+        data.put("t", this.totalBalls());
+        return data;
     }
 
     private void incrementTheBallCount(Ball ball) {
